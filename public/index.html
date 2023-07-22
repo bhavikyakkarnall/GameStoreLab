@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+    <script src="../secrets.js"></script>
+    <script src="../index.js"></script>
+
+    <script>
+
+        const gamesService = new GamesService(apiInfo.apiKey, apiInfo.baseUrl, apiInfo.apiHost);
+
+        window.onload = () => {
+            showGames();
+        }
+
+        async function showGames() {
+            try {
+                var games = await gamesService.getAllGames();
+            }
+            catch(error) {
+                console.log(error);
+                showErrorMessage(error);
+                return;
+            }
+
+            for(let game of games) {
+                addGameToPage(game);
+            }
+        }
+
+        function addGameToPage(game) {
+            var template = document.getElementById("game-card-template").content.cloneNode(true);
+            template.querySelector('.card-title').innerText = game.title;
+            template.querySelector('.card-text').innerText = game.short_description;
+            template.querySelector('.genre').innerText = game.genre;
+            template.querySelector('.card-img-top').src = game.thumbnail;
+            template.querySelector('.game-url').href = game.game_url;
+
+            document.querySelector('#games-list').appendChild(template);
+        }
+
+        function showErrorMessage(error) {
+            var errorMessageElement = document.getElementById("error-messages");
+            errorMessageElement.style.display = "block";
+            errorMessageElement.innerText = "Error: " + error.message;
+        }
+    </script>
+</head>
+
+<body>
+
+    <header class="bg-warning p-3">
+        <div><input style="width: 100%;" type="text" placeholder="Search.."></div>
+        <div class="row">
+            <div class="col">Filters:</div>
+            <div class="col"><lable>Genre/Tag:</lable>All Genres</div>
+            <div class="col"><lable>Platform:</lable>All Platforms</div>
+            <div class="col">Advance Filters</div>
+        </div>
+    </header>
+
+    <section>
+        <div class="container">
+            <div id="games-list" class="row justify-content-center">
+            </div>
+            <div id="error-messages" style="display: none;" class="bg-danger m-40 fw-bold"></div>
+        </div>
+
+    </section>
+
+    <template id="game-card-template">
+        <div class="card col-lg-3 col-md-4 col-sm-12 col-xl-2 m-2" style="width: 18rem;">
+            <img class="card-img-top" src="https://www.freetogame.com/g/540/thumbnail.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                    of the
+                    card's content.</p>
+                <p><span class="fw-bold">Genre: </span><span class="genre">Shooter</span></p>
+                <a class="game-url" href="#" class="btn btn-success">Play Game</a>
+            </div>
+        </div>
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>
