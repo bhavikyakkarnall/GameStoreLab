@@ -1,6 +1,5 @@
 import express, { json } from 'express';
 import cors from 'cors';
-//import gamesList from './services/gameServices.js';
 import gamesRoute from './routes/gamesRoute.js'
 
 import swaggerUi from 'swagger-ui-express';

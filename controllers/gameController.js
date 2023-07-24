@@ -82,6 +82,51 @@ export default class GamesController {
             res.json({error: err.message})
         }
     }
+    getGameByGenre(req,res) {
+        try{
+            let game = Game.getGameByGenre(req.params.genre)
+            if(game == null){
+                throw new Error('Error: No games to display')
+            }
+           res.status(200)
+           res.json(game)
+        }
+        catch (err) {
+            res.status(500);
+            res.json({error: err.message})
+        }
+    }
+    getGameByTitle(req,res) {
+        try{
+            let game = Game.getGameByTitle(req.params.title)
+            if(game == null){
+                throw new Error('Error: No games to display')
+            }
+           res.status(200)
+           res.json(game)
+        }
+        catch (err) {
+            res.status(500);
+            res.json({error: err.message})
+        }
+    }
+    getGameByPublisher(req,res) {
+        try{
+            let game = Game.getGameByPublisher(req.params.publisher)
+            if(game == null){
+                throw new Error('Error: No games to display')
+            }
+           res.status(200)
+           res.json(game)
+        }
+        catch (err) {
+            res.status(500);
+            res.json({error: err.message})
+        }
+    }
+
+
+
 
 }
 

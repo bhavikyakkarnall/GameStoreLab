@@ -52,11 +52,29 @@ function deleteGame(id) {
   return null;
 }
 
+function getGameByGenre(genre) {
+  const game = games.filter((game) => game.genre === genre);
+  return game;
+}
+
+function getGameByTitle(title) {
+  const game = games.filter((game) => game.title === title);
+  return game;
+}
+
+function getGameByPublisher(publisher) {
+  const game = games.filter((game) => game.publisher === publisher);
+  return game;
+}
+
 export default {
   Game,
   getAllGames,
   getGameById,
   createGame,
   updateGame,
-  deleteGame
+  deleteGame,
+  getGameByGenre,
+  getGameByTitle,
+  getGameByPublisher
 }

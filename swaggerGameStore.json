@@ -163,6 +163,108 @@
             }
           }
         }
+      },
+      "/games/publisher/{publisher}": {
+        "get": {
+          "summary": "Get a game by Publisher",
+          "description": "Retrieve games by a specific publisher.",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "publisher",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "description": "Publisher of the game."
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": null,
+                    "$ref": "#/components/schemas/Game"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found"
+            }
+          }
+        }
+      },
+      "/games/genre/{genre}": {
+        "get": {
+          "summary": "Get a game by Genre",
+          "description": "Retrieve games of a specific genre.",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "genre",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "description": "Genre of the game."
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": null,
+                    "$ref": "#/components/schemas/Game"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found"
+            }
+          }
+        }
+      },
+      "/games/title/{title}": {
+        "get": {
+          "summary": "Get a game by Title",
+          "description": "Retrieve games matching the title(s) using the keyword search.",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "title",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "description": "Title of the game."
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": null,
+                    "$ref": "#/components/schemas/Game"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found"
+            }
+          }
+        }
       }
     },
     "components": {

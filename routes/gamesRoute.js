@@ -23,5 +23,17 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
     gamesController.deleteGame(req, res);
 })
+//
+router.get('/publisher/:publisher', (req, res) => {
+    gamesController.getGameByPublisher(req, res);
+});
+
+router.get('/genre/:genre', (req, res) => {
+    gamesController.getGameByGenre(req, res);
+});
+
+router.get('/title/:title', (req, res) => {
+    gamesController.getGameByTitle(req, res);
+});  
 
 export default router;
