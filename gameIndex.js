@@ -6,6 +6,27 @@ const Games = class {
         return games;
     }
 
+    async seachGamesByPublisher(publicher) {
+        const url = `http://localhost:3000/games/publisher/${publicher}`;
+        const response = await fetch(url);
+        const games = await response.json();
+        return games;
+    }
+
+    async seachGamesByGenre(genre) {
+        const url = `http://localhost:3000/games/genre/${genre}`;
+        const response = await fetch(url);
+        const games = await response.json();
+        return games;
+    }
+
+    async seachGamesByTitle(gameTitle) {
+        const url = `http://localhost:3000/games/title/${gameTitle}`;
+        const response = await fetch(url);
+        const games = await response.json();
+        return games;
+    }
+
 }
 
 
@@ -24,6 +45,20 @@ async function showGames() {
     }
 }
 
+async function searchByTitle(title) {
+    try {
+        var games = await gamesService.seachGamesByTitle(title);
+    }
+    catch (error) {
+        console.log(error);
+        showErrorMessage(error);
+        return;
+    }
+
+    for (let game of games) {
+        addGameToPage(game);
+    }
+}
 
 function addGameToPage(game) {
     var template = document.getElementById("game-template").content.cloneNode(true);
