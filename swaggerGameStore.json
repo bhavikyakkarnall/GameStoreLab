@@ -5,7 +5,7 @@
       "title": "Game API",
       "description": "API for managing games",
       "license": {
-        "name": "MIT"
+        "name": "IOD"
       }
     },
     "servers": [
