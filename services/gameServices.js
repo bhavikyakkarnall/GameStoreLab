@@ -34,11 +34,20 @@ function createGame(id, title, thumbnail, short_description, game_url, genre, pl
   return newGame;
 }
 
-function updateGame(id, name, price) {
+function updateGame(id, title, thumbnail, short_description, game_url, genre, platform, publisher, developer, release_date, freetogame_profile_url) {
   const index = games.findIndex((game) => game.id === id);
   if (index !== -1) {
-    games[index].name = name;
-    games[index].price = price;
+    games[index].id = id
+    games[index].title = title
+    games[index].thumbnail = thumbnail
+    games[index].short_description = short_description
+    games[index].game_url = game_url
+    games[index].genre = genre
+    games[index].platform = platform
+    games[index].publisher = publisher
+    games[index].developer = developer
+    games[index].release_date = release_date
+    games[index].freetogame_profile_url = freetogame_profile_url
     return games[index];
   }
   return null;

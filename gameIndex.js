@@ -6,22 +6,22 @@ const Games = class {
         return games;
     }
 
-    async seachGamesByPublisher(publicher) {
-        const url = `http://localhost:3000/games/publisher/${publicher}`;
+    async seachGamesByPublisher(publisher) {
+        const url = `http://localhost:3000/games?publisher=${publisher}`;
         const response = await fetch(url);
         const games = await response.json();
         return games;
     }
 
     async seachGamesByGenre(genre) {
-        const url = `http://localhost:3000/games/genre/${genre}`;
+        const url = `http://localhost:3000/games?genre=${genre}`;
         const response = await fetch(url);
         const games = await response.json();
         return games;
     }
 
     async seachGamesByTitle(gameTitle) {
-        const url = `http://localhost:3000/games/title/${gameTitle}`;
+        const url = `http://localhost:3000/games?title=${gameTitle}`;
         const response = await fetch(url);
         const games = await response.json();
         return games;

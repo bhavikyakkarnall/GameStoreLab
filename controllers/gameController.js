@@ -5,7 +5,7 @@ import Game from '../services/gameServices.js'
 
 export default class GamesController {
 
-    getAllGames(req,res) {
+    /* getAllGames(req,res) {
         try{
            let game = Game.getAllGames();
            if(game == null){
@@ -13,6 +13,34 @@ export default class GamesController {
            }
            res.status(200)
            res.json(game)
+        }
+        catch (err) {
+            res.status(500);
+            res.json({error: err.message})
+        }
+    } */
+
+    getAllGames(req,res) {
+        try{
+            const { publisher, genre, title} = req.query;
+            let games = null;
+
+            if (publisher) {
+                games = Game.getGameByPublisher(publisher);
+            } else if (genre) {
+                games = Game.getGameByGenre(genre);
+            }else if (title) {
+                games = Game.getGameByTitle(title);
+            } else {
+                games = Game.getAllGames();
+            }
+
+            if (games.length === 0){
+                throw new Error('Error: No Games to display');
+            }
+
+           res.status(200)
+           res.json(games)
         }
         catch (err) {
             res.status(500);
@@ -82,7 +110,7 @@ export default class GamesController {
             res.json({error: err.message})
         }
     }
-    getGameByGenre(req,res) {
+    /* getGameByGenre(req,res) {
         try{
             let game = Game.getGameByGenre(req.params.genre)
             if(game == null){
@@ -95,8 +123,8 @@ export default class GamesController {
             res.status(500);
             res.json({error: err.message})
         }
-    }
-    getGameByTitle(req,res) {
+    } */
+    /* getGameByTitle(req,res) {
         try{
             let game = Game.getGameByTitle(req.params.title)
             if(game == null){
@@ -109,8 +137,8 @@ export default class GamesController {
             res.status(500);
             res.json({error: err.message})
         }
-    }
-    getGameByPublisher(req,res) {
+    } */
+    /* getGameByPublisher(req,res) {
         try{
             let game = Game.getGameByPublisher(req.params.publisher)
             if(game == null){
@@ -123,7 +151,7 @@ export default class GamesController {
             res.status(500);
             res.json({error: err.message})
         }
-    }
+    } */
 
 
 

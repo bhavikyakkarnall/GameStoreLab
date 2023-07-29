@@ -4,7 +4,6 @@ let newGamesList = [];
 
 searchBar.addEventListener('keyup', (e) => {
     const searchString = e.target.value.toLowerCase();
-
     const filteredGames = newGamesList.filter((game) => {
         return (
             game.title.toLowerCase().includes(searchString) ||
@@ -14,6 +13,13 @@ searchBar.addEventListener('keyup', (e) => {
     });
     displayGames(filteredGames);
 });
+
+/* searchBar.addEventListener('keyup', async (e) => {
+    const searchString = e.target.value.toLowerCase();
+    const res = await fetch(`http://localhost:3000/games?title=${e}`);
+    const filteredGames = await res.json();
+    displayGames(filteredGames);
+}); */
 
 const loadGames = async () => {
     try {
